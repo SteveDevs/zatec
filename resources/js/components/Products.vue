@@ -14,10 +14,9 @@ console.log(localStorage.getItem('usertoken'));
                 });
         },
         methods: {
-            purchase() {
-                this.axios
-                    .post('http://localhost:8000/api/purchases/create', {this.product.price, 
-                    user_id: localStorage.getItem('userId')})
+            purchase(product) {
+                this.axios.post('http://localhost:8000/api/purchases/create', { 
+                product, user_id: localStorage.getItem('userId')})
                     .then(response => (
                         this.$router.push({ name: 'user-home' })
                     ))

@@ -4,13 +4,13 @@
         <div class="row">
             <div class="col-md-6">
                 <div>Amount: {{ topup }} </div>
-                <form @submit.prevent="topup">
+              
                     <div class="form-group">
                         <label>Amount</label>
-                        <input type="number" class="form-control" v-model="topup.amount">
+                        <input type="number" class="form-control" v-model="amount">
                     </div>
-                    <button type="submit" class="btn btn-primary">Topup</button>
-                </form>
+                    <button v-on:click="doTopup()" class="btn btn-primary">Topup</button>
+             
             </div>
         </div>
     </div>
@@ -20,19 +20,20 @@
     export default {
         data() {
             return {
-                topup: {}
+                topup: 0,
+                amount: 0
             }
         },
         created() {
-                this.axios.get('http://localhost:8000/api/topup/' + localStorage.getItem('userId'))
+                this.axios.post('http://localhost:8000/api/topup/',{ user_id: localStorage.getItem('userId')})
                 .then(response => {
-                    this.topup = response.data;
+                console.log(response.data.data);
+                    this.topup = response.data.data;
                 });
         },
         methods: {
-            topup() {
-                this.axios
-                    .post('http://localhost:8000/api/users/topup', [localStorage.getItem('userId'), this.topup.amount])
+            doTopup() {
+                this.axios.post('http://localhost:8000/api/topup/update', { user_id: localStorage.getItem('userId'), topup: this.amount})
                     .then(response => (
                         this.$router.push({ name: 'user-home' })
                     ))

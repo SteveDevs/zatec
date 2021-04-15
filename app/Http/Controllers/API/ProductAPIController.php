@@ -8,7 +8,7 @@ use App\Models\Product;
 use Validator;
 use App\Http\Resources\ProductResource;
    
-class ProductController extends BaseController
+class ProductAPIController extends BaseController
 {
     /**
      * Display a listing of the resource.

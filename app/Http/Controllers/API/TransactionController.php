@@ -8,16 +8,16 @@ use App\Models\Transaction;
 use Validator;
 use App\Http\Resources\TransactionResource;
    
-class ProductController extends BaseController
+class TransactionController extends BaseController
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id)
+    public function get(Request $request)
     {
-        $transactions = Transaction::where('user_id', $id)->get();
+        $transactions = Transaction::where('user_id', $request->get('user_id'))->get();
     
         return $this->sendResponse(TransactionResource::collection($transactions), 'Transactions retrieved successfully.');
     }

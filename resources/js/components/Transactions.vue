@@ -23,14 +23,13 @@
     export default {
         data() {
             return {
-                products: []
+                transactions: []
             }
         },
         created() {
-            this.axios
-                .get('http://localhost:8000/api/transactions/' + localStorage.getItem('userId'))
+            this.axios.post('http://localhost:8000/api/transactions/', { user_id: localStorage.getItem('userId')})
                 .then(response => {
-                    this.products = response.data;
+                    this.transactions = response.data.data;
                 });
         }
     }

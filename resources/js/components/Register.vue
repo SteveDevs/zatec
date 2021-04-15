@@ -50,11 +50,9 @@
                         password:this.password
                     })
                     .then((res) => {
-                        console.log(res)
                         this.$router.push({name: 'login'})
                     })
                     .catch((err) => {
-                        console.log(this.password)
                         console.log(err)
                     })
             }

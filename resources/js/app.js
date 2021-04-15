@@ -29,7 +29,7 @@ const router = new VueRouter({
     routes: routes
 });
 
-if(window.location.href.indexOf("admin") < -1) {
+if(window.location.href.indexOf("admin") > -1) {
        const app = new Vue({
     el: '#app',
    

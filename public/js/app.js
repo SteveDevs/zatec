@@ -1964,9 +1964,47 @@ __webpack_require__.r(__webpack_exports__);
 /*!***************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Products.vue?vue&type=script&lang=js& ***!
   \***************************************************************************************************************************************************************************************************************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /home/steve/Documents/dev/zatec-hub-test/app/resources/js/components/Products.vue: Unexpected keyword 'this' (19:73)\n\n\u001b[0m \u001b[90m 17 |\u001b[39m             purchase() {\u001b[0m\n\u001b[0m \u001b[90m 18 |\u001b[39m                 \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39maxios\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 19 |\u001b[39m                     \u001b[33m.\u001b[39mpost(\u001b[32m'http://localhost:8000/api/purchases/create'\u001b[39m\u001b[33m,\u001b[39m {\u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mproduct\u001b[33m,\u001b[39m \u001b[0m\n\u001b[0m \u001b[90m    |\u001b[39m                                                                          \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 20 |\u001b[39m                     user_id\u001b[33m:\u001b[39m localStorage\u001b[33m.\u001b[39mgetItem(\u001b[32m'userId'\u001b[39m)})\u001b[0m\n\u001b[0m \u001b[90m 21 |\u001b[39m                     \u001b[33m.\u001b[39mthen(response \u001b[33m=>\u001b[39m (\u001b[0m\n\u001b[0m \u001b[90m 22 |\u001b[39m                         \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39m$router\u001b[33m.\u001b[39mpush({ name\u001b[33m:\u001b[39m \u001b[32m'user-home'\u001b[39m })\u001b[0m\n    at Parser._raise (/home/steve/Documents/dev/zatec-hub-test/app/node_modules/@babel/parser/lib/index.js:776:17)\n    at Parser.raiseWithData (/home/steve/Documents/dev/zatec-hub-test/app/node_modules/@babel/parser/lib/index.js:769:17)\n    at Parser.raise (/home/steve/Documents/dev/zatec-hub-test/app/node_modules/@babel/parser/lib/index.js:737:17)\n    at Parser.checkReservedWord (/home/steve/Documents/dev/zatec-hub-test/app/node_modules/@babel/parser/lib/index.js:11936:12)\n    at Parser.parseObjectProperty (/home/steve/Documents/dev/zatec-hub-test/app/node_modules/@babel/parser/lib/index.js:11653:12)\n    at Parser.parseObjPropValue (/home/steve/Documents/dev/zatec-hub-test/app/node_modules/@babel/parser/lib/index.js:11673:100)\n    at Parser.parsePropertyDefinition (/home/steve/Documents/dev/zatec-hub-test/app/node_modules/@babel/parser/lib/index.js:11597:10)\n    at Parser.parseObjectLike (/home/steve/Documents/dev/zatec-hub-test/app/node_modules/@babel/parser/lib/index.js:11487:25)\n    at Parser.parseExprAtom (/home/steve/Documents/dev/zatec-hub-test/app/node_modules/@babel/parser/lib/index.js:11047:23)\n    at Parser.parseExprSubscripts (/home/steve/Documents/dev/zatec-hub-test/app/node_modules/@babel/parser/lib/index.js:10708:23)\n    at Parser.parseUpdate (/home/steve/Documents/dev/zatec-hub-test/app/node_modules/@babel/parser/lib/index.js:10688:21)\n    at Parser.parseMaybeUnary (/home/steve/Documents/dev/zatec-hub-test/app/node_modules/@babel/parser/lib/index.js:10666:23)\n    at Parser.parseExprOps (/home/steve/Documents/dev/zatec-hub-test/app/node_modules/@babel/parser/lib/index.js:10523:23)\n    at Parser.parseMaybeConditional (/home/steve/Documents/dev/zatec-hub-test/app/node_modules/@babel/parser/lib/index.js:10497:23)\n    at Parser.parseMaybeAssign (/home/steve/Documents/dev/zatec-hub-test/app/node_modules/@babel/parser/lib/index.js:10460:21)\n    at /home/steve/Documents/dev/zatec-hub-test/app/node_modules/@babel/parser/lib/index.js:10427:39");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+console.log(localStorage.getItem('usertoken'));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      products: []
+    };
+  },
+  created: function created() {
+    var _this = this;
+
+    this.axios.get('http://localhost:8000/api/products/').then(function (response) {
+      _this.products = response.data.data;
+    });
+  },
+  methods: {
+    purchase: function purchase(product) {
+      var _this2 = this;
+
+      this.axios.post('http://localhost:8000/api/purchases/create', {
+        product: product,
+        user_id: localStorage.getItem('userId')
+      }).then(function (response) {
+        return _this2.$router.push({
+          name: 'user-home'
+        });
+      })["catch"](function (err) {
+        return console.log(err);
+      })["finally"](function () {
+        return _this2.loading = false;
+      });
+    }
+  }
+});
 
 /***/ }),
 
@@ -2032,13 +2070,10 @@ __webpack_require__.r(__webpack_exports__);
         email: this.email,
         password: this.password
       }).then(function (res) {
-        console.log(res);
-
         _this.$router.push({
           name: 'login'
         });
       })["catch"](function (err) {
-        console.log(_this.password);
         console.log(err);
       });
     }
@@ -2079,21 +2114,28 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      topup: {}
+      topup: 0,
+      amount: 0
     };
   },
   created: function created() {
     var _this = this;
 
-    this.axios.get('http://localhost:8000/api/topup/' + localStorage.getItem('userId')).then(function (response) {
-      _this.topup = response.data;
+    this.axios.post('http://localhost:8000/api/topup/', {
+      user_id: localStorage.getItem('userId')
+    }).then(function (response) {
+      console.log(response.data.data);
+      _this.topup = response.data.data;
     });
   },
   methods: {
-    topup: function topup() {
+    doTopup: function doTopup() {
       var _this2 = this;
 
-      this.axios.post('http://localhost:8000/api/users/topup', [localStorage.getItem('userId'), this.topup.amount]).then(function (response) {
+      this.axios.post('http://localhost:8000/api/topup/update', {
+        user_id: localStorage.getItem('userId'),
+        topup: this.amount
+      }).then(function (response) {
         return _this2.$router.push({
           name: 'user-home'
         });
@@ -2143,14 +2185,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      products: []
+      transactions: []
     };
   },
   created: function created() {
     var _this = this;
 
-    this.axios.get('http://localhost:8000/api/transactions/' + localStorage.getItem('userId')).then(function (response) {
-      _this.products = response.data;
+    this.axios.post('http://localhost:8000/api/transactions/', {
+      user_id: localStorage.getItem('userId')
+    }).then(function (response) {
+      _this.transactions = response.data.data;
     });
   }
 });
@@ -2199,7 +2243,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_4__.default({
   routes: _routes__WEBPACK_IMPORTED_MODULE_3__.routes
 });
 
-if (window.location.href.indexOf("admin") < -1) {
+if (window.location.href.indexOf("admin") > -1) {
   var app = new Vue({
     el: '#app'
   });
@@ -38608,49 +38652,43 @@ var render = function() {
       _c("div", { staticClass: "col-md-6" }, [
         _c("div", [_vm._v("Amount: " + _vm._s(_vm.topup) + " ")]),
         _vm._v(" "),
-        _c(
-          "form",
-          {
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", [_vm._v("Amount")]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.amount,
+                expression: "amount"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { type: "number" },
+            domProps: { value: _vm.amount },
             on: {
-              submit: function($event) {
-                $event.preventDefault()
-                return _vm.topup($event)
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.amount = $event.target.value
+              }
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-primary",
+            on: {
+              click: function($event) {
+                return _vm.doTopup()
               }
             }
           },
-          [
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", [_vm._v("Amount")]),
-              _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.topup.amount,
-                    expression: "topup.amount"
-                  }
-                ],
-                staticClass: "form-control",
-                attrs: { type: "number" },
-                domProps: { value: _vm.topup.amount },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.topup, "amount", $event.target.value)
-                  }
-                }
-              })
-            ]),
-            _vm._v(" "),
-            _c(
-              "button",
-              { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-              [_vm._v("Topup")]
-            )
-          ]
+          [_vm._v("Topup")]
         )
       ])
     ])
