@@ -17,6 +17,7 @@ class CreateTransactionsTable extends Migration
             $table->id();
             $table->bigInteger('user_id')->unsigned();
             $table->enum('type', ['purchase', 'topup']);
+            $table->decimal('amount', 9, 2);
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });

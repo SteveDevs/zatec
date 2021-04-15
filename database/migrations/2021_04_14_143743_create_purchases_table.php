@@ -3,8 +3,9 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Carbon\Carbon;
 
-class CreatePurchaseProductsTable extends Migration
+class CreatePurchasesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,19 +14,16 @@ class CreatePurchaseProductsTable extends Migration
      */
     public function up()
     {
-        Schema::create('purchase_products', function (Blueprint $table) {
-
+        Schema::create('purchases', function (Blueprint $table) {
+            $table->id();
+            $table->datetime('purchase_date')->default(Carbon::now()->toDateTimeString());
+            $table->bigInteger('user_id')->unsigned();
             $table->bigInteger('product_id')->unsigned();
-            $table->bigInteger('purchase_id')->unsigned();
             $table->timestamps();
 
-            $table->primary(array('product_id', 'purchase_id'));
-
-            $table->foreign('purchase_id')->references('id')->on('purchases')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
         });
-
-
     }
 
     /**
@@ -35,6 +33,6 @@ class CreatePurchaseProductsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('purchase_products');
+        Schema::dropIfExists('purchases');
     }
 }
