@@ -21,8 +21,9 @@ Route::get('/user', function () {
 Route::group(['prefix'=>'admin','as'=>'admin.'], function(){
 
     Route::get('/', function () {
-        return route('admin.login');
+        return redirect()->route('admin.login');
     });
+    
     Auth::routes();
     
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
