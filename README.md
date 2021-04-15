@@ -47,3 +47,9 @@ Improvements:
 modify how updates are done to the database.
 
 Use Laravel default relationship for models more.
+
+Make more comments in the code.
+
+Implement tests
+
+Complete the auth guards that have been intialized but not implemented.
